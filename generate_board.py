@@ -42,38 +42,81 @@ def find_cell_option(board, row, col):
       options.remove(num)
   
   # Remove the num in the same box
+  box_row = int(row/3)
+  box_col = int(col/3)
 
+  box_first_cell_row = box_row*3
+  boc_first_cell_col = box_col*3
 
+  for row_i in range (0,3):
+    for col_i in range (0,3):
+      num = board[box_first_cell_row+row_i][boc_first_cell_col+col_i]
+      if num in options:
+        options.remove(num)
 
-  
   return options
 
 
 
-def automatic_generate_board():
-  board_row = generate_empty_board()
-  row = 0
-  col = 0
+# def automatic_generate_board():
+#   board_row = generate_empty_board()
+#   row = 0
+#   col = 0
+#   #Loop each cell
+#   while row <9:
+#     while col <9:
+
+#       option_list = find_cell_option(board_row,row,col)
+#       if len(option_list) > 0:
+#         #Random chose from option list
+#         choose_num = random.choice(option_list)
+#         #Set num in board
+#         board_row[row][col]=choose_num
+#         col += 1
+#       else:
+#         if col == 0:
+#           col = 8
+#           row -= 1
+#         else:
+#           col -= 1
+
+#     # Set the row and col
+#     col = 0 
+#     row += 1
+
+#   return board_row
+
+
+def generate_board_helper(board, row, col, previous_option):
   #Loop each cell
   while row <9:
     while col <9:
 
-      option_list = find_cell_option(board_row,row,col)
+      option_list = find_cell_option(board,row,col)
       if len(option_list) > 0:
         #Random chose from option list
-        choose_num = random.choice(option_list)
+        choose_num = random.choice(ele for ele in option_list if ele != previous_option)
         #Set num in board
-        board_row[row][col]=choose_num
+        board[row][col]=choose_num
         col += 1
       else:
         if col == 0:
           col = 8
           row -= 1
+          generate_board_helper(choose_num,row, col)
         else:
           col -= 1
+          generate_board_helper(choose_num,row, col)
 
     # Set the row and col
     col = 0 
     row += 1
 
-  return board_row
+    return board
+
+def automatic_generate_board():
+  board_row = generate_empty_board()
+  new_board = generate_board_helper(board_row, row=0, col=0,  previous_option=None)
+
+  return new_board
+
