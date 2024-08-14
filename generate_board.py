@@ -57,66 +57,36 @@ def find_cell_option(board, row, col):
   return options
 
 
-
-# def automatic_generate_board():
-#   board_row = generate_empty_board()
-#   row = 0
-#   col = 0
-#   #Loop each cell
-#   while row <9:
-#     while col <9:
-
-#       option_list = find_cell_option(board_row,row,col)
-#       if len(option_list) > 0:
-#         #Random chose from option list
-#         choose_num = random.choice(option_list)
-#         #Set num in board
-#         board_row[row][col]=choose_num
-#         col += 1
-#       else:
-#         if col == 0:
-#           col = 8
-#           row -= 1
-#         else:
-#           col -= 1
-
-#     # Set the row and col
-#     col = 0 
-#     row += 1
-
-#   return board_row
-
-
-def generate_board_helper(board, row, col, previous_option):
-  #Loop each cell
-  while row <9:
-    while col <9:
-
-      option_list = find_cell_option(board,row,col)
-      if len(option_list) > 0:
-        #Random chose from option list
-        choose_num = random.choice(ele for ele in option_list if ele != previous_option)
-        #Set num in board
-        board[row][col]=choose_num
-        col += 1
-      else:
-        if col == 0:
-          col = 8
-          row -= 1
-          generate_board_helper(choose_num,row, col)
-        else:
-          col -= 1
-          generate_board_helper(choose_num,row, col)
-
-    # Set the row and col
-    col = 0 
+def helper(board,  row, col):
+  if col>8:
+    col = 0
     row += 1
-
+  if row >8:
     return board
+  
+  option_list = find_cell_option(board,row,col)
+  while len(option_list) >0:
+    # print("option_list",option_list)
+    # print("row",row)
+    # print("col",col)
+    choose_num = random.choice(option_list)
+    option_list.remove(choose_num)
+    board[row][col] = choose_num
+    result = helper(board, row, col+1)
+    if result is not None:
+      return board
+    else:
+      board[row][col] = 0
+  
+  return None
+      
 
 def automatic_generate_board():
-  board_row = generate_empty_board()
-  new_board = generate_board_helper(board_row, row=0, col=0,  previous_option=None)
+  row = 0
+  col = 0
+  board = generate_empty_board()
+  result = helper(board, row, col)
 
-  return new_board
-
+  return result
+  
+  
