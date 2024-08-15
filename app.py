@@ -16,13 +16,14 @@ class App:
     self._button = pygame.Rect(self._button_position,self._button_dimension )
     self._font1 = None
     self._font2 = None
-    self._board = Board()
+    self._board = None
 
     
   
   def on_init(self):
     # Initialize the pygame library
-    pygame.init()
+    pygame.font.init()
+
     # Set up the drawing window
     self._screen = pygame.display.set_mode((self.width, self.height))
     self.caption = pygame.display.set_caption('Sudoku Game (Created by Janis Chan)')
@@ -32,6 +33,11 @@ class App:
     # Set font type and size
     self._font1 = pygame.font.SysFont("comicsans",40)
     self._font2 = pygame.font.SysFont("comicsans",20)
+
+    # Create Board
+    self._board = Board(self._screen)
+
+    # Run the App
     self._running = True
 
 
@@ -59,7 +65,7 @@ class App:
     # Draw a Button
     pygame.draw.rect(self._screen, self._button_color, self._button)
  
-    self._board.draw_board(self._screen)
+    self._board.draw_board()
     pygame.display.update()
   
   def on_render(self):

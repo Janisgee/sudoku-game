@@ -3,7 +3,8 @@ from pygame.locals import *
 from cell import Cell
 
 class Board():
-  def __init__(self):
+  def __init__(self, screen):
+    self._screen = screen
     self._board_size = 630
     self._left_edge = 100
     self._top_edge = 90
@@ -12,11 +13,12 @@ class Board():
     for row in range (0,9):
       self._cells.append([])
       for col in range (0,9):
-        cell = Cell(self._board_size, row, col)
+        cell = Cell(screen, self._board_size, row, col)
         self._cells[row].append(cell)
 
 
-  def draw_board(self, screen):
+  def draw_board(self):
+    screen = self._screen
     one_third = self._board_size/3
     one_nineth = self._board_size/9
     left = self._left_edge
@@ -25,7 +27,7 @@ class Board():
     bottom = top + self._board_size
 
     # Draw cells
-    self.draw_board_cells(screen, top, left)
+    self.draw_board_cells(top, left)
 
     # Draw inner-line (8 x vertical line & 8 x horizontal line)
     for num in range (1, 10):
@@ -48,14 +50,14 @@ class Board():
  
 
 
-  def draw_board_cells(self, screen, top, left):
+  def draw_board_cells(self, top, left):
     cell_size = self._board_size/9
     original_left = left
 
     # Draw Cells
     for row in range (0,9):
       for col in range (0,9):
-        self._cells[row][col].create_cell(screen, top, left)
+        self._cells[row][col].create_cell( top, left)
         left += cell_size
       top += cell_size
       left = original_left
