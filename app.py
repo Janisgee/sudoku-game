@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from board import Board
+from cell import Cell
 
 class App:
   def __init__(self):
@@ -16,6 +17,8 @@ class App:
     self._font1 = None
     self._font2 = None
     self._board = Board()
+
+    
   
   def on_init(self):
     # Initialize the pygame library
@@ -45,6 +48,12 @@ class App:
         if self._button.collidepoint(x,y): # Check if click is within button
           print("Mouse button pressed!")
           self._button_color = (237, 45, 45)
+
+    # Cell mouse event
+    for row in range (0, len(self._board._cells)):
+      for col in range (0, len(self._board._cells[row])):
+        self._board._cells[row][col].cell_event(event)
+
   
   def on_loop(self):
     # Draw a Button
