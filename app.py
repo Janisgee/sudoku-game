@@ -1,26 +1,34 @@
 import pygame
 from pygame.locals import *
+from board import Board
 
 class App:
   def __init__(self):
     self._running = True
     self._screen = None
     self._caption = None
-    self.weight = 1200
+    self.width = 1200
     self.height = 800
     self._button_color = (230, 230, 230) # Grey color
     self._button_position = (600, 400) # Centre of screen
     self._button_dimension = (100, 100) # Width and Height
     self._button = pygame.Rect(self._button_position,self._button_dimension )
+    self._font1 = None
+    self._font2 = None
+    self._board = Board()
   
   def on_init(self):
     # Initialize the pygame library
     pygame.init()
     # Set up the drawing window
-    self._screen = pygame.display.set_mode([self.weight, self.height])
+    self._screen = pygame.display.set_mode((self.width, self.height))
     self.caption = pygame.display.set_caption('Sudoku Game (Created by Janis Chan)')
     # Fill the background with white
     self._screen.fill((255, 255, 255))
+
+    # Set font type and size
+    self._font1 = pygame.font.SysFont("comicsans",40)
+    self._font2 = pygame.font.SysFont("comicsans",20)
     self._running = True
 
 
@@ -41,6 +49,8 @@ class App:
   def on_loop(self):
     # Draw a Button
     pygame.draw.rect(self._screen, self._button_color, self._button)
+ 
+    self._board.draw_board(self._screen)
     pygame.display.update()
   
   def on_render(self):
