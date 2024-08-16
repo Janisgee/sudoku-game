@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from board import Board
-from cell import Cell
+from generate_board import automatic_generate_board
 
 class App:
   def __init__(self):
@@ -34,8 +34,12 @@ class App:
     self._font1 = pygame.font.SysFont("comicsans",40)
     self._font2 = pygame.font.SysFont("comicsans",20)
 
+    # Get cell number by automatic generation
+    num_list = automatic_generate_board()
+    print (num_list)
+
     # Create Board
-    self._board = Board(self._screen)
+    self._board = Board(self._screen, num_list)
 
     # Run the App
     self._running = True

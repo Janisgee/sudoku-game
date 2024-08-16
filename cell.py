@@ -1,10 +1,13 @@
+
 import pygame
 from pygame.locals import *
 pygame.font.init()
 
+
 class Cell():
-  def __init__(self, screen, board_size, row, col):
+  def __init__(self, screen, cell_num, board_size, row, col):
     self._screen = screen
+    self._cell_num = cell_num
     self._cell_size = board_size / 9
     self._cell_button = None
     self._cell_fill = (240, 240, 240) # grey
@@ -41,11 +44,12 @@ class Cell():
           self._cell_fill = (240, 240, 240) # grey
 
   def cell_number_display(self, top, left): 
+
     # Create text
-    num_text = self._font.render(f'{self.cell_row}', True, (0, 0, 128))
+    num_text = self._font.render(f'{self._cell_num}', True, (0, 0, 128))
 
     # Get the size of text
-    (text_width,text_height) = self._font.size(f'{self.cell_row}')
+    (text_width,text_height) = self._font.size(f'{self._cell_num}')
 
     # Display text
     text_left = (left + self._cell_size/2) - text_width/2

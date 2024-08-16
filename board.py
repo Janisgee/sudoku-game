@@ -3,7 +3,7 @@ from pygame.locals import *
 from cell import Cell
 
 class Board():
-  def __init__(self, screen):
+  def __init__(self, screen, num_list):
     self._screen = screen
     self._board_size = 630
     self._left_edge = 100
@@ -13,7 +13,8 @@ class Board():
     for row in range (0,9):
       self._cells.append([])
       for col in range (0,9):
-        cell = Cell(screen, self._board_size, row, col)
+        cell_num = num_list[row][col]
+        cell = Cell(screen, cell_num, self._board_size, row, col)
         self._cells[row].append(cell)
 
 
