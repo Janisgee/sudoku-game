@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 from board import Board
-from generate_board import automatic_generate_board
+from generate_board import automatic_generate_board,empty_board_by_difficulty
 
 class App:
   def __init__(self):
@@ -17,6 +17,7 @@ class App:
     self._font1 = None
     self._font2 = None
     self._board = None
+    self._level = {0:("Extremely Easy",3), 1:("Easy",4), 2:("Medium",5), 3:("Difficult",6)}
 
     
   
@@ -35,11 +36,12 @@ class App:
     self._font2 = pygame.font.SysFont("comicsans",20)
 
     # Get cell number by automatic generation
-    num_list = automatic_generate_board()
-    print (num_list)
+    answer_list = automatic_generate_board()
+    game_list = empty_board_by_difficulty(answer_list, self._level[3])
+    print (answer_list)
 
     # Create Board
-    self._board = Board(self._screen, num_list)
+    self._board = Board(self._screen, answer_list, game_list)
 
     # Run the App
     self._running = True

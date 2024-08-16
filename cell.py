@@ -5,8 +5,9 @@ pygame.font.init()
 
 
 class Cell():
-  def __init__(self, screen, cell_num, board_size, row, col):
+  def __init__(self, screen, cell_ans, cell_num, board_size, row, col):
     self._screen = screen
+    self._cell_ans = cell_ans
     self._cell_num = cell_num
     self._cell_size = board_size / 9
     self._cell_button = None
@@ -44,15 +45,23 @@ class Cell():
           self._cell_fill = (240, 240, 240) # grey
 
   def cell_number_display(self, top, left): 
+    # Display " " when list number is 0
+    game_num = ""
+    if self._cell_num == 0:
+      game_num = ' '
+    else:
+      game_num = f'{self._cell_num}'
 
     # Create text
-    num_text = self._font.render(f'{self._cell_num}', True, (0, 0, 128))
+    num_text = self._font.render(game_num, True, (0, 0, 128))
 
     # Get the size of text
-    (text_width,text_height) = self._font.size(f'{self._cell_num}')
+    (text_width,text_height) = self._font.size(game_num)
 
     # Display text
     text_left = (left + self._cell_size/2) - text_width/2
     text_top = (top + self._cell_size/2) - text_height/2+5
     self._screen.blit(num_text, (text_left, text_top))
     
+  def cell_empty(self, cell_list):
+    pass

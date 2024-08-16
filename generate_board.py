@@ -88,5 +88,30 @@ def automatic_generate_board():
   result = helper(board, row, col)
 
   return result
+
+# level = {0:"Extremely Easy", 1:"Easy", 2:"Medium", 3:"Difficult", 4:"Evil"}
+def empty_board_by_difficulty( cells_list, level = ("Extremely Easy",3)):
+  # print("list",cells_list)
+  hidden_list = cells_list.copy()
+  row = 0
+  count = 0
+  space = level[1]
+
+  while row < 9:
+    random_index = random.randint(0, 8)
+
+    if hidden_list[row][random_index] is not 0:
+      hidden_list[row][random_index]= 0
+      count += 1
+
+    if count == space:
+      row += 1
+      count = 0
+
+  return hidden_list
+    
+
+
+
   
   
