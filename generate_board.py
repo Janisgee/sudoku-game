@@ -46,11 +46,11 @@ def find_cell_option(board, row, col):
   box_col = int(col/3)
 
   box_first_cell_row = box_row*3
-  boc_first_cell_col = box_col*3
+  box_first_cell_col = box_col*3
 
   for row_i in range (0,3):
     for col_i in range (0,3):
-      num = board[box_first_cell_row+row_i][boc_first_cell_col+col_i]
+      num = board[box_first_cell_row+row_i][box_first_cell_col+col_i]
       if num in options:
         options.remove(num)
 
@@ -100,18 +100,51 @@ def empty_board_by_difficulty( cells_list, level = ("Extremely Easy",3)):
   while row < 9:
     random_index = random.randint(0, 8)
 
-    if hidden_list[row][random_index] is not 0:
+    if hidden_list[row][random_index] != 0:
       hidden_list[row][random_index]= 0
       count += 1
 
     if count == space:
       row += 1
       count = 0
-
+  print("hidden_list", hidden_list)
   return hidden_list
-    
 
 
+
+##### Figure out how to check board valid
+
+def check_board_helper(board,  row, col):
+  if col>8:
+    col = 0
+    row += 1
+  if row >8:
+    return board
+  
+  option_list = find_cell_option(board,row,col)
+  while len(option_list) >0:
+    print("option_list",option_list)
+    print("row",row)
+    print("col",col)
+    if board[row][col] == 0:
+      choose_num = random.choice(option_list)
+      option_list.remove(choose_num)
+      board[row][col] = choose_num
+    result = check_board_helper(board, row, col+1)
+    if result is not None:
+      return board
+    else:
+      board[row][col] = 0
+  
+  return None
+
+def check_game_board_valid(board):
+  row = 0
+  col = 0
+  result = check_board_helper(board, row, col)
+  print(result)
+
+  return result
 
   
   

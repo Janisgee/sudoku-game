@@ -20,4 +20,5 @@ board3 = automatic_generate_board()
 # print_board(board3)
 
 level = {0:("Extremely Easy",3), 1:("Easy",4), 2:("Medium",5), 3:("Difficult",6)}
-empty_board_by_difficulty(level[3], board3)
+hidden_list = empty_board_by_difficulty(board3,level[0])
+check_game_board_valid(hidden_list)

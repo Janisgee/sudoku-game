@@ -37,7 +37,8 @@ class App:
 
     # Get cell number by automatic generation
     answer_list = automatic_generate_board()
-    game_list = empty_board_by_difficulty(answer_list, self._level[3])
+    level = self._level[0]
+    game_list = empty_board_by_difficulty(answer_list, level)
     print (answer_list)
 
     # Create Board
