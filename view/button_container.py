@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-from cell_control_buttons import Cell_control_buttons
+from view.cell_control_buttons import Cell_control_buttons
 
 class Button_container:
   def __init__ (self, screen, board_size):
@@ -12,6 +12,7 @@ class Button_container:
 
     # Store each side number control buttons
     self.side_number_buttons=[]
+    
     for i in range (1,10):
       button = Cell_control_buttons(screen,i, self._board_size/9)
       self.side_number_buttons.append(button)

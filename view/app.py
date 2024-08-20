@@ -1,20 +1,21 @@
 import pygame
 from pygame.locals import *
-from board import Board
+# from ..control.controller import Controller
+# from ..model.game_model import Game_model
+from .board import Board
 from generate_board import automatic_generate_board,empty_board_by_difficulty
-from button_container import Button_container
+from .button_container import Button_container
 
 class App:
-  def __init__(self):
+  def __init__(self, controller, model):
+    self._controller = controller
+    self._model = model
     self._running = True
     self._screen = None
     self._caption = None
     self.width = 1200
     self.height = 800
-    self._button_color = (230, 230, 230) # Grey color
-    self._button_position = (600, 400) # Centre of screen
-    self._button_dimension = (100, 100) # Width and Height
-    self._button = pygame.Rect(self._button_position,self._button_dimension )
+
     self._font1 = None
     self._font2 = None
     self._board = None
@@ -38,46 +39,31 @@ class App:
     self._font2 = pygame.font.SysFont("comicsans",20)
 
 
-    # Get cell number by automatic generation
-    while True:
-      answer_list = automatic_generate_board()
-      level = self._level[0]
-      game_list = empty_board_by_difficulty(answer_list, level)
-      if game_list:
-        break
-
     # Create Board
-    self._board = Board(self._screen, answer_list, game_list)
+    self._board = Board(self._controller, self._model, self._screen)
     # Create button container for buttons
     self._button_container = Button_container(self._screen, self._board._board_size)
 
     # Run the App
     self._running = True
 
-
-
-   
   
   def on_event(self, event):
     if event.type == pygame.QUIT:
       self._running = False
 
-    if event.type == pygame.MOUSEBUTTONDOWN:
-      if pygame.mouse.get_pressed()[0]:
-        x,y = pygame.mouse.get_pos() # Get click position
-        if self._button.collidepoint(x,y): # Check if click is within button
-          print("Mouse button pressed!")
-          self._button_color = (237, 45, 45)
 
     # Cell mouse event
     for row in range (0, len(self._board._cells)):
       for col in range (0, len(self._board._cells[row])):
         self._board._cells[row][col].cell_event(event)
 
+    # Side number control event
+    for i in range (0, 9):
+      self._button_container.side_number_buttons[i].cell_control_button_event(event)
+
   
   def on_loop(self):
-    # Draw a Button
-    pygame.draw.rect(self._screen, self._button_color, self._button)
  
     self._board.draw_board()
     self._button_container.draw_side_numbers_buttons()
@@ -107,6 +93,3 @@ class App:
     self.on_cleanup()
 
 
-if __name__ == "__main__" :
-  theApp = App()
-  theApp.on_execute()
