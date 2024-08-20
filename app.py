@@ -17,7 +17,7 @@ class App:
     self._font1 = None
     self._font2 = None
     self._board = None
-    self._level = {0:("Extremely Easy",3), 1:("Easy",4), 2:("Medium",5), 3:("Difficult",6)}
+    self._level = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
 
     
   
@@ -35,11 +35,14 @@ class App:
     self._font1 = pygame.font.SysFont("comicsans",40)
     self._font2 = pygame.font.SysFont("comicsans",20)
 
+
     # Get cell number by automatic generation
-    answer_list = automatic_generate_board()
-    level = self._level[0]
-    game_list = empty_board_by_difficulty(answer_list, level)
-    print (answer_list)
+    while True:
+      answer_list = automatic_generate_board()
+      level = self._level[0]
+      game_list = empty_board_by_difficulty(answer_list, level)
+      if game_list:
+        break
 
     # Create Board
     self._board = Board(self._screen, answer_list, game_list)

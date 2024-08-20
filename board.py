@@ -38,7 +38,6 @@ class Board():
       # Horizontal inner-line
       pygame.draw.line(screen, (0,0,0),(left, top + one_nineth * num),(right, top + one_nineth * num),1)
 
-
     # Draw board square
     pygame.draw.rect(screen, (0,0,0),[left, top, self._board_size,self._board_size],5)
 
@@ -49,8 +48,8 @@ class Board():
       # Horizontal Line 2
       pygame.draw.line(screen, (0,0,0),(left, top + one_third * num),(right, top + one_third * num),5)
 
- 
 
+  
 
   def draw_board_cells(self, top, left):
     cell_size = self._board_size/9
@@ -59,7 +58,7 @@ class Board():
     # Draw Cells
     for row in range (0,9):
       for col in range (0,9):
-        self._cells[row][col].create_cell( top, left)
+        self._cells[row][col].create_cell(top, left)
         left += cell_size
       top += cell_size
       left = original_left

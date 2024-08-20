@@ -2,6 +2,7 @@
 import pygame
 from pygame.locals import *
 pygame.font.init()
+from view import display_text_center_at_buttons
 
 
 class Cell():
@@ -51,17 +52,6 @@ class Cell():
       game_num = ' '
     else:
       game_num = f'{self._cell_num}'
-
-    # Create text
-    num_text = self._font.render(game_num, True, (0, 0, 128))
-
-    # Get the size of text
-    (text_width,text_height) = self._font.size(game_num)
-
-    # Display text
-    text_left = (left + self._cell_size/2) - text_width/2
-    text_top = (top + self._cell_size/2) - text_height/2+5
-    self._screen.blit(num_text, (text_left, text_top))
     
-  def cell_empty(self, cell_list):
-    pass
+    # Create and display text on cell
+    display_text_center_at_buttons(self._screen, game_num, self._cell_size, top, left)

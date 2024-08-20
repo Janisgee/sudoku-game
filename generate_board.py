@@ -1,4 +1,5 @@
 import random
+import copy
 from debug import *
 # Function to generate board
 def generate_board():
@@ -56,7 +57,6 @@ def find_cell_option(board, row, col):
 
   return options
 
-
 def helper(board,  row, col):
   if col>8:
     col = 0
@@ -66,9 +66,6 @@ def helper(board,  row, col):
   
   option_list = find_cell_option(board,row,col)
   while len(option_list) >0:
-    # print("option_list",option_list)
-    # print("row",row)
-    # print("col",col)
     choose_num = random.choice(option_list)
     option_list.remove(choose_num)
     board[row][col] = choose_num
@@ -89,62 +86,63 @@ def automatic_generate_board():
 
   return result
 
-# level = {0:"Extremely Easy", 1:"Easy", 2:"Medium", 3:"Difficult", 4:"Evil"}
-def empty_board_by_difficulty( cells_list, level = ("Extremely Easy",3)):
-  # print("list",cells_list)
-  hidden_list = cells_list.copy()
-  row = 0
-  count = 0
+def check_board_solution_count (board, solution_count = 0):
+  # Find the first zero index
+  index = None
+  for row in range(9):
+    for col in range(9):
+      if board[row][col] == 0:
+        index = (row, col)
+        break
+  
+  # Base case is there is no zero
+  if index == None:
+    return solution_count + 1
+
+  row = index[0]
+  col = index[1]
+  # Find the options for board
+  option_list = find_cell_option(board,row,col)
+  while len(option_list) > 0:
+    choose_num = random.choice(option_list)
+    option_list.remove(choose_num)
+    board[row][col] = choose_num
+    solution_count = check_board_solution_count(board, solution_count)
+
+    if solution_count > 1:
+      return solution_count
+    
+    board[row][col] = 0
+          
+  return solution_count
+
+      
+def empty_board_by_difficulty( cells_list, level = ("Extremely Easy",32)):
+
+  hidden_list = copy.deepcopy(cells_list)
   space = level[1]
+  fail = 0
 
-  while row < 9:
-    random_index = random.randint(0, 8)
+  while space != 0:
+    row = random.randrange(0, 9)
+    col = random.randrange(0,9)
 
-    if hidden_list[row][random_index] != 0:
-      hidden_list[row][random_index]= 0
-      count += 1
+    ans = hidden_list[row][col]
+    if hidden_list[row][col] != 0:
+      hidden_list[row][col]=0
+      result = check_board_solution_count(copy.deepcopy(hidden_list))
+      if result == 1:
+        space -= 1
+      else:
+        hidden_list[row][col]= ans
+        fail += 1
+        if fail > 50:
+          print("fail", space)
+          return None
 
-    if count == space:
-      row += 1
-      count = 0
-  print("hidden_list", hidden_list)
   return hidden_list
 
 
-
-##### Figure out how to check board valid
-
-def check_board_helper(board,  row, col):
-  if col>8:
-    col = 0
-    row += 1
-  if row >8:
-    return board
-  
-  option_list = find_cell_option(board,row,col)
-  while len(option_list) >0:
-    print("option_list",option_list)
-    print("row",row)
-    print("col",col)
-    if board[row][col] == 0:
-      choose_num = random.choice(option_list)
-      option_list.remove(choose_num)
-      board[row][col] = choose_num
-    result = check_board_helper(board, row, col+1)
-    if result is not None:
-      return board
-    else:
-      board[row][col] = 0
-  
-  return None
-
-def check_game_board_valid(board):
-  row = 0
-  col = 0
-  result = check_board_helper(board, row, col)
-  print(result)
-
-  return result
 
   
   
