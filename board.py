@@ -8,6 +8,7 @@ class Board():
     self._board_size = 630
     self._left_edge = 100
     self._top_edge = 90
+
     # Store each cell position
     self._cells = []
     for row in range (0,9):
@@ -18,7 +19,7 @@ class Board():
         cell = Cell(screen, cell_ans, cell_num, self._board_size, row, col)
         self._cells[row].append(cell)
 
-
+  # Draw board lines
   def draw_board(self):
     screen = self._screen
     one_third = self._board_size/3
@@ -28,8 +29,8 @@ class Board():
     top = self._top_edge
     bottom = top + self._board_size
 
-    # Draw cells
-    self.draw_board_cells(top, left)
+    # Draw cells line
+    self.fill_board_cells(top, left)
 
     # Draw inner-line (8 x vertical line & 8 x horizontal line)
     for num in range (1, 10):
@@ -49,9 +50,9 @@ class Board():
       pygame.draw.line(screen, (0,0,0),(left, top + one_third * num),(right, top + one_third * num),5)
 
 
-  
 
-  def draw_board_cells(self, top, left):
+
+  def fill_board_cells(self, top, left):
     cell_size = self._board_size/9
     original_left = left
 

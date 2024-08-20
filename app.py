@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import *
 from board import Board
 from generate_board import automatic_generate_board,empty_board_by_difficulty
+from button_container import Button_container
 
 class App:
   def __init__(self):
@@ -17,6 +18,7 @@ class App:
     self._font1 = None
     self._font2 = None
     self._board = None
+    self._button_container = None
     self._level = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
 
     
@@ -46,6 +48,8 @@ class App:
 
     # Create Board
     self._board = Board(self._screen, answer_list, game_list)
+    # Create button container for buttons
+    self._button_container = Button_container(self._screen, self._board._board_size)
 
     # Run the App
     self._running = True
@@ -76,6 +80,7 @@ class App:
     pygame.draw.rect(self._screen, self._button_color, self._button)
  
     self._board.draw_board()
+    self._button_container.draw_side_numbers_buttons()
     pygame.display.update()
   
   def on_render(self):
