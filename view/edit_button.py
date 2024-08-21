@@ -42,10 +42,11 @@ class Edit_button:
  
 
   def edit_button_event(self, event):
-    if hover_button_change_fill_color(event, self._edit_button):
-      self._fill_color = (255, 0, 123) # Pink
-    else:
-      self._fill_color = (255, 255, 255) # White
+    if event.type == pygame.MOUSEMOTION:
+      if check_mouse_collision(self._edit_button):
+        self._fill_color = (255, 0, 123) # Pink
+      else:
+        self._fill_color = (255, 255, 255) # White
 
 
 

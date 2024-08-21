@@ -4,6 +4,7 @@ from pygame.locals import *
 pygame.font.init()
 
 from view.view import display_text_center_at_buttons
+from .helper import *
 
 
 
@@ -56,8 +57,8 @@ class Cell():
     if event.type == pygame.MOUSEBUTTONDOWN:
       # Left click cell and # Right click cell
       if pygame.mouse.get_pressed()[0] or pygame.mouse.get_pressed()[2]:
-        x,y = pygame.mouse.get_pos() # Get click position
-        if self._cell_button.collidepoint(x,y): # Check if click is within button, 
+        if check_mouse_collision(self._cell_button):
+        # If click is within button 
           self._controller.click_board_cell((self.cell_row,self.cell_col))
           print(f"{self.cell_row}{self.cell_col}")
 

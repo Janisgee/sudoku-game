@@ -15,7 +15,6 @@ class Erase_button:
     self._left_edge = 85
     self._top_edge =  205
     self._erase_switch = True
-    self._hover = False
     self.create_erase_button(self._left_edge + self._button_width + 10,self._top_edge)
 
   def draw_button(self):
@@ -42,10 +41,11 @@ class Erase_button:
     display_text_center_at_buttons(self._screen, erase_text, self._text_color, self._text_size, self._button_width, self._button_heigth,  erase_top, erase_left, 'Arial')
 
   def erase_button_event(self, event):
-    if hover_button_change_fill_color(event, self._erase_button):
-      self._fill_color = (255, 0, 123) # Pink
-    else:
-      self._fill_color = (255, 255, 255) # White
+    if event.type == pygame.MOUSEMOTION:
+      if check_mouse_collision(self._erase_button):
+        self._fill_color = (255, 0, 123) # Pink
+      else:
+        self._fill_color = (255, 255, 255) # White
 
 
 
