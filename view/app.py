@@ -3,7 +3,8 @@ from pygame.locals import *
 # from ..control.controller import Controller
 # from ..model.game_model import Game_model
 from .board import Board
-from .cell_buttons_control_container import Cell_buttons_control_container
+# from .cell_buttons_control_container import Cell_buttons_control_container
+from .buttons_group import Buttons_group
 
 class App:
   def __init__(self, controller, model):
@@ -14,11 +15,10 @@ class App:
     self._caption = None
     self.width = 800
     self.height = 1100
-
     self._font1 = None
     self._font2 = None
     self._board = None
-    self._button_container = None
+    self._buttons_group = None
     self._level = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
 
     
@@ -41,7 +41,8 @@ class App:
     # Create Board
     self._board = Board(self._controller, self._model, self._screen)
     # Create button container for buttons
-    self.cell_buttons_control_container = Cell_buttons_control_container(self._screen, self._board._board_size)
+    self._buttons_group = Buttons_group(self._screen, self._board)
+    self._buttons_group.create_all_buttons()
 
     # Run the App
     self._running = True
@@ -57,15 +58,16 @@ class App:
       for col in range (0, len(self._board._cells[row])):
         self._board._cells[row][col].cell_event(event)
 
-    # Side number control event
-    for i in range (0, 9):
-      self.cell_buttons_control_container.side_number_buttons[i].cell_control_button_event(event)
+    # Game buttons control event
+    self._buttons_group.event_from_buttons(event)
+
 
   
   def on_loop(self):
 
     self._board.draw_board()
-    self.cell_buttons_control_container.draw_side_numbers_buttons()
+    # Display game buttons
+    self._buttons_group.display_all_buttons()
     pygame.display.update()
   
   def on_render(self):
@@ -73,7 +75,6 @@ class App:
     # Flip the display (Without this line, nothing display)
     pygame.display.flip()
 
-    
 
   def on_cleanup(self):
     # Quit game

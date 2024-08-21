@@ -7,6 +7,7 @@ class Cell_control_buttons:
     self._screen = screen
     self._button_size= button_size
     self._cell_control_num = num
+    self._cell_text_size = 60
     self._cell_control_button_fill = (250, 188, 157)
     self._cell_control_button_text_color = (0, 0, 0)
     self._cell_control_button_left = None
@@ -34,7 +35,7 @@ class Cell_control_buttons:
 
     # Create and display represent number on buttons
     text = f"{self._cell_control_num}"
-    display_text_center_at_buttons(self._screen, text, self._cell_control_button_text_color, button_width, top, left)
+    display_text_center_at_buttons(self._screen, text, self._cell_control_button_text_color,self._cell_text_size,  button_width,button_width,  top, left)
 
   def cell_control_button_event(self, event):
     if event.type == pygame.MOUSEMOTION and self._cell_control_button:
@@ -42,8 +43,6 @@ class Cell_control_buttons:
       x,y = pygame.mouse.get_pos()
       hit = self._cell_control_button.collidepoint(x,y)
       if hit:
-        print(x,y)
-        print(self._cell_control_button)
         self._hover = True
       else:
         self._hover = False

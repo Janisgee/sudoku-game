@@ -13,6 +13,7 @@ class Cell():
     self._model = model
     self._screen = screen
     self._cell_size = board_size / 9
+    self._cell_text_size = 60
     self._cell_button = None
     self._cell_fill = (240, 240, 240) # grey
     # self._cell_fill_pressed = (211, 238, 240)# red
@@ -72,4 +73,4 @@ class Cell():
       game_num = f'{cell}'
     
     # Create and display text on cell
-    display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_size, top, left)
+    display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_text_size, self._cell_size,  self._cell_size, top, left)

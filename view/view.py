@@ -7,8 +7,8 @@ pygame.font.init()
 
 # Display View
 
-def display_text_center_at_buttons(screen, text, text_color, buttons_size, top, left):
-  font = pygame.font.Font(None, 60)
+def display_text_center_at_buttons(screen, text, text_color, text_size,  buttons_width,buttons_height,  top, left, text_style = None):
+  font = pygame.font.SysFont(text_style, text_size)
   # Create text
   button_text = font.render(text, True, text_color)
 
@@ -16,8 +16,8 @@ def display_text_center_at_buttons(screen, text, text_color, buttons_size, top, 
   (text_width,text_height) = font.size(text)
 
   # Display text
-  text_left = (left + buttons_size/2) - text_width/2
-  text_top = (top + buttons_size/2) - text_height/2+5
+  text_left = (left + buttons_width / 2) - text_width/2
+  text_top = (top + buttons_height / 2) - text_height/2+5
 
   screen.blit(button_text, (text_left, text_top))
     
