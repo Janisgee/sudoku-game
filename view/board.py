@@ -8,8 +8,8 @@ class Board():
     self._model = model
     self._screen = screen
     self._board_size = 630
-    self._left_edge = 100
-    self._top_edge = 90
+    self._left_edge = 85
+    self._top_edge = 385
 
     # Store each cell position
     self._cells = []

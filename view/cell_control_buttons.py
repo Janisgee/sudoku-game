@@ -39,9 +39,11 @@ class Cell_control_buttons:
   def cell_control_button_event(self, event):
     if event.type == pygame.MOUSEMOTION and self._cell_control_button:
 
-      pos = pygame.mouse.get_pos()
-      hit = self._cell_control_button.collidepoint(pos)
+      x,y = pygame.mouse.get_pos()
+      hit = self._cell_control_button.collidepoint(x,y)
       if hit:
+        print(x,y)
+        print(self._cell_control_button)
         self._hover = True
       else:
         self._hover = False

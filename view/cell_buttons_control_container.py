@@ -3,12 +3,12 @@ from pygame.locals import *
 
 from view.cell_control_buttons import Cell_control_buttons
 
-class Button_container:
+class Cell_buttons_control_container:
   def __init__ (self, screen, board_size):
     self._screen = screen
     self._board_size = board_size
-    self._left_edge = 780
-    self._top_edge = 90
+    self._left_edge = 85
+    self._top_edge = 285
 
     # Store each side number control buttons
     self.side_number_buttons=[]
@@ -24,18 +24,17 @@ class Button_container:
     screen = self._screen
     one_nineth = self._board_size/9
     left = self._left_edge
-    right = left + one_nineth - 1
     top = self._top_edge
 
     # Fill button colors and number
     self.fill_side_numbers_buttons()
 
     # Draw big rectangle for buttons
-    pygame.draw.rect(screen, (0,0,0),[left, top, one_nineth, self._board_size],2)
+    pygame.draw.rect(screen, (0,0,0),[left, top, self._board_size,one_nineth ],2)
 
     # Draw vertical lines divides big rectangle into 9 buttons
     for num in range (1,9):
-      pygame.draw.line(screen, (0,0,0),(left, top + one_nineth * num),(right, top + one_nineth * num),2)
+      pygame.draw.line(screen, (0,0,0),(left + one_nineth * num, top),(left + one_nineth * num, top + one_nineth - 1),2)
 
   def fill_side_numbers_buttons(self):
     # Fill button colors and number
@@ -45,4 +44,4 @@ class Button_container:
 
     for i in range (0, len(self.side_number_buttons)):
       self.side_number_buttons[i].create_cell_control_button(top, left)
-      top += cell_width
+      left += cell_width
