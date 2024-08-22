@@ -1,9 +1,7 @@
 import pygame
 from pygame.locals import *
-# from ..control.controller import Controller
-# from ..model.game_model import Game_model
+import pygame_gui
 from .board import Board
-# from .cell_buttons_control_container import Cell_buttons_control_container
 from .buttons_group import Buttons_group
 
 class App:
@@ -21,6 +19,11 @@ class App:
     self._buttons_group = None
     self._level = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
 
+    # Items for pygame_gui
+    self._manager = None
+    self._clock = None
+    self._time_delta = None
+
     
   
   def on_init(self):
@@ -32,6 +35,9 @@ class App:
     self.caption = pygame.display.set_caption('Sudoku Game (Created by Janis Chan)')
     # Fill the background with white
     self._screen.fill((255, 255, 255))
+
+    # Setup for pygame gui packager
+    self._manager = pygame_gui.UIManager((self.width, self.height))
 
     # Set font type and size
     self._font1 = pygame.font.SysFont("comicsans",40)
@@ -46,11 +52,14 @@ class App:
 
     # Run the App
     self._running = True
-
+    self._clock = pygame.time.Clock()
   
   def on_event(self, event):
+    self._time_delta = self._clock.tick(60)/1000.0
     if event.type == pygame.QUIT:
       self._running = False
+
+
 
 
     # Cell mouse event
@@ -61,13 +70,15 @@ class App:
     # Game buttons control event
     self._buttons_group.event_from_buttons(event)
 
+    
 
-  
   def on_loop(self):
 
     self._board.draw_board()
     # Display game buttons
     self._buttons_group.display_all_buttons()
+
+    self._manager.draw_ui(self._screen)
     pygame.display.update()
   
   def on_render(self):
@@ -86,7 +97,9 @@ class App:
     while (self._running):
       for event in pygame.event.get():
         self.on_event(event)
-
+      
+      self._manager.process_events(event)
+      self._manager.update(self._time_delta)
 
       self.on_loop()
       self.on_render()

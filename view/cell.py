@@ -80,4 +80,4 @@ class Cell():
       game_num = f'{cell}'
     
     # Create and display text on cell
-    display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_text_size, self._cell_size,  self._cell_size, top, left)
+    display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)

@@ -29,7 +29,7 @@ class Cell_control_buttons:
 
     # Create and display represent number on buttons
     text = f"{self._cell_control_num}"
-    display_text_center_at_buttons(self._screen, text, self._cell_control_button_text_color,self._cell_text_size,  button_width,button_width,  top, left)
+    display_text_center_at_buttons(self._screen, text, self._cell_control_button_text_color,self._cell_text_size,  button_width,button_width,  top, left,  None, 5)
 
   def cell_control_button_event(self, event):
 
