@@ -1,6 +1,4 @@
 
-from model.game_model import Game_model
-
 class Controller:
   def __init__ (self, model):
     self._game_model = model

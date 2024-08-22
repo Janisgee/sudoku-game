@@ -17,7 +17,6 @@ class App:
     self._font2 = None
     self._board = None
     self._buttons_group = None
-    self._level = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
 
     # Items for pygame_gui
     self._manager = None
@@ -47,7 +46,7 @@ class App:
     # Create Board
     self._board = Board(self._controller, self._model, self._screen)
     # Create button container for buttons
-    self._buttons_group = Buttons_group(self._screen, self._board)
+    self._buttons_group = Buttons_group(self._screen, self._board, self._manager)
     self._buttons_group.create_all_buttons()
 
     # Run the App
@@ -55,12 +54,9 @@ class App:
     self._clock = pygame.time.Clock()
   
   def on_event(self, event):
-    self._time_delta = self._clock.tick(60)/1000.0
+
     if event.type == pygame.QUIT:
       self._running = False
-
-
-
 
     # Cell mouse event
     for row in range (0, len(self._board._cells)):
@@ -69,19 +65,17 @@ class App:
 
     # Game buttons control event
     self._buttons_group.event_from_buttons(event)
+  
+  def on_render(self):
 
-    
-
-  def on_loop(self):
+    # Fill the background with white
+    self._screen.fill((255, 255, 255))
 
     self._board.draw_board()
     # Display game buttons
     self._buttons_group.display_all_buttons()
 
     self._manager.draw_ui(self._screen)
-    pygame.display.update()
-  
-  def on_render(self):
     
     # Flip the display (Without this line, nothing display)
     pygame.display.flip()
@@ -95,13 +89,13 @@ class App:
     if self.on_init() == False:
       self._running = False
     while (self._running):
-      for event in pygame.event.get():
-        self.on_event(event)
-      
-      self._manager.process_events(event)
+      self._time_delta = self._clock.tick(60)/1000.0
       self._manager.update(self._time_delta)
 
-      self.on_loop()
+      for event in pygame.event.get():
+        self.on_event(event)
+        self._manager.process_events(event)
+
       self.on_render()
     self.on_cleanup()
 

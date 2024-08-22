@@ -1,8 +1,10 @@
 from .button import Button
+from .selection_bar import Selection_bar
 
 class Game_control_buttons:
-  def __init__ (self, screen):
+  def __init__ (self, screen,  manager):
     self._screen = screen
+    self._manager = manager
     self._selection_bar = None
     self._edit_button = None
     self._erase_button = None
@@ -16,7 +18,7 @@ class Game_control_buttons:
     text_size = 25
     # First Line Buttons
     # Selection Bar
-    self._selection_bar = Button(win, "* Choose Level", text_size, 160, 40, 85, 145 )
+    self._selection_bar = Selection_bar(win, "* Choose Level", text_size, 160, 40, 85, 145, self._manager )
     # New Game Button
     self._new_game_button = Button(win, "New Game", text_size, 280, 40, 260, 145 )
     # Timer
@@ -48,7 +50,9 @@ class Game_control_buttons:
 
   def game_control_buttons_event(self, event):
     # Hover Event for buttons
-    self._selection_bar.button_event(event)
+    # self._selection_bar.button_event(event)
+    self._selection_bar.selection_bar_event(event)
+
     self._edit_button.button_event(event)
     self._erase_button.button_event(event)
     self._clear_all_button.button_event(event)

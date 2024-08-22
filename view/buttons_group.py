@@ -2,16 +2,17 @@ from .cell_buttons_control_container import Cell_buttons_control_container
 from .game_control_buttons import Game_control_buttons
 
 class Buttons_group:
-  def __init__ (self, screen, board):
+  def __init__ (self, screen, board, manager):
     self._screen = screen
     self._board = board
+    self._manager= manager
     self.cell_buttons_control_container = None
     self.game_control_buttons = None
 
 
   def create_all_buttons (self):
     self.cell_buttons_control_container = Cell_buttons_control_container(self._screen, self._board._board_size)
-    self.game_control_buttons= Game_control_buttons(self._screen)
+    self.game_control_buttons= Game_control_buttons(self._screen,  self._manager)
     self.game_control_buttons.create_game_control_buttons()
 
   def display_all_buttons (self):

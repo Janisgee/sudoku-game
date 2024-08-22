@@ -12,7 +12,7 @@ class Button:
     self._text_size = text_size
     self._fill_color = (242, 242, 227) #light yellow
     self._button_width = button_width
-    self._button_heigth = button_height
+    self._button_height = button_height
     self._left_edge = left_edge
     self._top_edge =  top_edge
     self.create_button(self._left_edge, self._top_edge)
@@ -24,19 +24,19 @@ class Button:
     top = self._top_edge
 
     # Fill color for button
-    pygame.draw.rect(self._screen, self._fill_color,[left, top, self._button_width, self._button_heigth])
+    pygame.draw.rect(self._screen, self._fill_color,[left, top, self._button_width, self._button_height])
 
     # Draw rectangle line for button
-    pygame.draw.rect(screen, (0,0,0),[left, top, self._button_width ,self._button_heigth ],2)
+    pygame.draw.rect(screen, (0,0,0),[left, top, self._button_width ,self._button_height ],2)
     self.create_button(left, top)
 
   def create_button (self, left, top):
     # Create button react position
-    self._button = pygame.Rect((left, top),(self._button_width , self._button_heigth))
+    self._button = pygame.Rect((left, top),(self._button_width , self._button_height))
 
     # Create text for button
     text = self._text
-    display_text_center_at_buttons(self._screen, text, self._text_color, self._text_size, self._button_width, self._button_heigth,  top, left, 'Arial')
+    display_text_center_at_buttons(self._screen, text, self._text_color, self._text_size, self._button_width, self._button_height,  top, left, 'Arial')
 
   def button_event(self, event):
     if event.type == pygame.MOUSEMOTION:
