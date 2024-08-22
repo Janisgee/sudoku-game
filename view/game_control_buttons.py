@@ -1,23 +1,44 @@
-from .edit_button import Edit_button
-from .erase_button import Erase_button
+from .button import Button
 
 class Game_control_buttons:
   def __init__ (self, screen):
     self._screen = screen
     self._edit_button = None
     self._erase_button = None
+    self._clear_all_button = None
+    self._hint = None
+    self._show_answer = None
   
   def create_game_control_buttons(self):
-    # Create edit button and erase button
-    self._edit_button = Edit_button(self._screen)
-    self._erase_button = Erase_button(self._screen)
+    win = self._screen
+    # First Line Buttons
+
+    # Second Line Buttons
+    # Edit Button
+    self._edit_button = Button(win, "Edit", 30, 100, 50, 85, 205)
+    # Erase Button
+    self._erase_button = Button(win, "Erase", 30, 100, 50, 190, 205)
+    # Clear All Button
+    self._clear_all_button = Button (win, "Clear All", 30, 100, 50, 395, 205)
+    # Hint Button
+    self._hint = Button (win, "Hint", 30, 100, 50, 500, 205)
+    # Show Answer Button
+    self._show_answer = Button (win, "End Game", 30, 110, 50, 605, 205)
+
 
 
   def draw_game_control_buttons(self):
-    # Draw edit button and erase button
+    # Draw buttons lines
     self._edit_button.draw_button()
     self._erase_button.draw_button()
+    self._clear_all_button.draw_button()
+    self._hint.draw_button()
+    self._show_answer.draw_button()
 
   def game_control_buttons_event(self, event):
-    self._edit_button.edit_button_event(event)
-    self._erase_button.erase_button_event(event)
+    # Event for buttons
+    self._edit_button.button_event(event)
+    self._erase_button.button_event(event)
+    self._clear_all_button.button_event(event)
+    self._hint.button_event(event)
+    self._show_answer.button_event(event)

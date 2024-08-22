@@ -34,13 +34,19 @@ class Cell():
     self.cell_top = top
     grey = (240, 240, 240)
     blue = (211, 238, 240)
+    white = (255,255,255)
 
     # Change cell color
     if (self.cell_row,self.cell_col) == self._model.selected_cell:
       self._cell_fill = blue
     else:
-      self._cell_fill = grey
-      # Draw one cell
+      if self._model.game_list[self.cell_row][self.cell_col] == 0:
+        self._cell_fill = white
+      else:
+        self._cell_fill = grey
+      
+    # Draw one cell
+    
     pygame.draw.rect(screen, self._cell_fill,[left, top, cell_width,cell_width])
     # Create cell react position
     self._cell_button =  pygame.Rect((left, top),(cell_width, cell_width))
