@@ -33,12 +33,12 @@ class Cell():
     self.cell_left = left
     self.cell_top = top
     grey = (240, 240, 240)
-    blue = (211, 238, 240)
+    yellow = (252, 210, 21) 
     white = (255,255,255)
 
     # Change cell color
     if (self.cell_row,self.cell_col) == self._model.selected_cell:
-      self._cell_fill = blue
+      self._cell_fill = yellow
     else:
       if self._model.game_list[self.cell_row][self.cell_col] == 0:
         self._cell_fill = white

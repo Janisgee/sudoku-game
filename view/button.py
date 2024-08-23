@@ -4,8 +4,9 @@ from view.view import display_text_center_at_buttons
 from .helper import *
 
 class Button:
-  def __init__ (self, screen, text, text_size, button_width, button_height, left_edge, top_edge):
+  def __init__ (self, screen, model, text, text_size, button_width, button_height, left_edge, top_edge):
     self._screen = screen
+    self._model = model
     self._button = None
     self._text = text
     self._text_color = (0, 0, 0)

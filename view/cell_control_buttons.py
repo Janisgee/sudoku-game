@@ -35,7 +35,7 @@ class Cell_control_buttons:
 
     if event.type == pygame.MOUSEMOTION:
       if check_mouse_collision(self._cell_control_button):
-        self._cell_control_button_fill = (185, 250, 191) # Light Green
+        self._cell_control_button_fill = (252, 210, 21)  # Sand yellow
       else:
         self._cell_control_button_fill = (250, 188, 157) # Light orange
     

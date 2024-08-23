@@ -76,6 +76,8 @@ class App:
     self._buttons_group.display_all_buttons()
 
     self._manager.draw_ui(self._screen)
+
+    # self._controller.time_count()
     
     # Flip the display (Without this line, nothing display)
     pygame.display.flip()
@@ -90,6 +92,7 @@ class App:
       self._running = False
     while (self._running):
       self._time_delta = self._clock.tick(60)/1000.0
+      self._controller.add_game_time(self._time_delta)
       self._manager.update(self._time_delta)
 
       for event in pygame.event.get():

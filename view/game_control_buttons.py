@@ -1,5 +1,8 @@
 from .button import Button
 from .selection_bar import Selection_bar
+from .new_game_button import New_game_button
+from .edit_button import Edit_button
+from .timer import Timer
 
 class Game_control_buttons:
   def __init__ (self, screen,  manager, model):
@@ -13,29 +16,31 @@ class Game_control_buttons:
     self._hint_button = None
     self._show_answer_button = None
     self._new_game_button = None
+    self._timer = None
   
   def create_game_control_buttons(self):
     win = self._screen
     text_size = 25
     # First Line Buttons
     # Selection Bar
-    self._selection_bar = Selection_bar(win, "* Choose Level", text_size, 160, 40, 85, 145, self._manager , self._model)
+    self._selection_bar = Selection_bar(win, self._model, "* Choose Level", text_size, 160, 40, 85, 145, self._manager )
     # New Game Button
-    self._new_game_button = Button(win, "New Game", text_size, 280, 40, 260, 145 )
+    self._new_game_button = New_game_button(win, self._model, "New Game", text_size, 280, 40, 260, 145 )
     # Timer
+    self._timer = Timer(win,self._model, "Timer 00:00", text_size, 160, 40, 555, 145)
     
 
     # Second Line Buttons
     # Edit Button
-    self._edit_button = Button(win, "Edit", text_size, 100, 50, 85, 205)
+    self._edit_button = Edit_button(win,self._model, "Edit: Off", text_size, 100, 50, 85, 205, self._manager )
     # Erase Button
-    self._erase_button = Button(win, "Erase", text_size, 100, 50, 190, 205)
+    self._erase_button = Button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
     # Clear All Button
-    self._clear_all_button = Button (win, "Clear All", text_size, 100, 50, 395, 205)
+    self._clear_all_button = Button (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
     # Hint Button
-    self._hint_button = Button (win, "Hint", text_size, 100, 50, 500, 205)
+    self._hint_button = Button (win, self._model,"Hint", text_size, 100, 50, 500, 205)
     # Show Answer Button
-    self._show_answer_button = Button (win, "End Game", text_size, 110, 50, 605, 205)
+    self._show_answer_button = Button (win, self._model,"End Game", text_size, 110, 50, 605, 205)
 
 
 
@@ -48,15 +53,19 @@ class Game_control_buttons:
     self._hint_button.draw_button()
     self._show_answer_button.draw_button()
     self._new_game_button.draw_button()
+    self._timer.draw_button()
+
 
   def game_control_buttons_event(self, event):
     # Hover Event for buttons
-    # self._selection_bar.button_event(event)
-    self._selection_bar.selection_bar_event(event)
 
+    self._selection_bar.button_event(event)
     self._edit_button.button_event(event)
     self._erase_button.button_event(event)
     self._clear_all_button.button_event(event)
     self._hint_button.button_event(event)
     self._show_answer_button.button_event(event)
     self._new_game_button.button_event(event)
+
+    
+

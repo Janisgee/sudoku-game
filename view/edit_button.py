@@ -1,9 +1,48 @@
 
+import pygame
+from pygame.locals import *
+from control.controller import Controller
+from .button import Button
+from .helper import *
 
-class Edit_button():
-  def __init__ (self, screen, text, text_size, button_width, button_height, left_edge, top_edge):
-    super().__init__(screen, text, text_size, button_width, button_height, left_edge, top_edge)
-    self._switch = "On"
+class Edit_button(Button):
+  def __init__ (self, screen, model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
+    super().__init__(screen, model, text, text_size, button_width, button_height, left_edge, top_edge)
+    self._model= model
+    self._controller = Controller(model)
+    self._manager = manager
+    self.boolean = False
+
+
+
+
+  def button_event(self, event):
+    super().button_event(event)
+    if event.type == pygame.MOUSEBUTTONDOWN:
+      if pygame.mouse.get_pressed()[0]:
+        if check_mouse_collision(self._button):
+          print("Edit_button")
+          # self._controller.toggle_switch(self._model.edit_button)
+          if self.boolean == False:
+            self._text = "Edit: On"
+            self._controller.toggle_switch(True)
+            self.boolean = True
+          else:
+            self._text = "Edit: Off"
+            self._controller.toggle_switch(False)
+            self.boolean = False
+          
+
+            
+        
+    
+
+
+
+
+  
+
+  
 
 
 
