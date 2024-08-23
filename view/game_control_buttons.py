@@ -3,7 +3,9 @@ from .selection_bar import Selection_bar
 from .new_game_button import New_game_button
 from .draft_button import Draft_button
 from .erase_button import Erase_button
-from.clear_all import Clear_all
+from .clear_all_button import Clear_all_button
+from .hint_button import Hint_button
+from .end_game_button import End_game_button
 from .timer import Timer
 
 class Game_control_buttons:
@@ -16,7 +18,7 @@ class Game_control_buttons:
     self._erase_button = None
     self._clear_all_button = None
     self._hint_button = None
-    self._show_answer_button = None
+    self._end_game_button = None
     self._new_game_button = None
     self._timer = None
   
@@ -38,11 +40,11 @@ class Game_control_buttons:
     # Erase Button
     self._erase_button = Erase_button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
     # Clear All Button
-    self._clear_all_button = Clear_all (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
+    self._clear_all_button = Clear_all_button (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
     # Hint Button
-    self._hint_button = Button (win, self._model,"Hint", text_size, 100, 50, 500, 205)
+    self._hint_button = Hint_button (win, self._model,f"Hint x {self._model.hint}", text_size, 100, 50, 500, 205)
     # Show Answer Button
-    self._show_answer_button = Button (win, self._model,"End Game", text_size, 110, 50, 605, 205)
+    self._end_game_button = End_game_button (win, self._model,"End Game", text_size, 110, 50, 605, 205)
 
 
 
@@ -53,7 +55,7 @@ class Game_control_buttons:
     self._erase_button.draw_button()
     self._clear_all_button.draw_button()
     self._hint_button.draw_button()
-    self._show_answer_button.draw_button()
+    self._end_game_button.draw_button()
     self._new_game_button.draw_button()
     self._timer.draw_button()
 
@@ -66,7 +68,7 @@ class Game_control_buttons:
     self._erase_button.button_event(event)
     self._clear_all_button.button_event(event)
     self._hint_button.button_event(event)
-    self._show_answer_button.button_event(event)
+    self._end_game_button.button_event(event)
     self._new_game_button.button_event(event)
 
     

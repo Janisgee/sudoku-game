@@ -1,8 +1,6 @@
 
-import pygame
 from pygame.locals import *
 from control.controller import Controller
-import time
 from .button import Button
 from .helper import *
 
