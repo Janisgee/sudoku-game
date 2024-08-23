@@ -6,7 +6,6 @@ pygame.font.init()
 
 
 # Display View
-
 def display_text_center_at_buttons(screen, text, text_color, text_size,  buttons_width,buttons_height,  top, left,  text_style = None, align_square_cell=0):
   font = pygame.font.SysFont(text_style, text_size)
   # Create text

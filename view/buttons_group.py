@@ -14,7 +14,7 @@ class Buttons_group:
 
   def create_all_buttons (self):
     self.cell_buttons_control_container = Cell_buttons_control_container(self._screen, self._board._board_size, self._controller, self._model)
-    self.game_control_buttons= Game_control_buttons(self._screen,  self._manager, self._model)
+    self.game_control_buttons= Game_control_buttons(self._screen,  self._manager, self._controller, self._model)
     self.game_control_buttons.create_game_control_buttons()
 
   def display_all_buttons (self):

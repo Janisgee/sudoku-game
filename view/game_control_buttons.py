@@ -9,9 +9,10 @@ from .end_game_button import End_game_button
 from .timer import Timer
 
 class Game_control_buttons:
-  def __init__ (self, screen,  manager, model):
+  def __init__ (self, screen,  manager, controller, model):
     self._screen = screen
     self._manager = manager
+    self._controller = controller
     self._model = model
     self._selection_bar = None
     self._draft_button = None
@@ -27,24 +28,24 @@ class Game_control_buttons:
     text_size = 25
     # First Line Buttons
     # Selection Bar
-    self._selection_bar = Selection_bar(win, self._model, "* Choose Level", text_size, 160, 40, 85, 145, self._manager )
+    self._selection_bar = Selection_bar(win, self._controller, self._model, "* Choose Level", text_size, 160, 40, 85, 145, self._manager )
     # New Game Button
-    self._new_game_button = New_game_button(win, self._model, "New Game", text_size, 280, 40, 260, 145 )
+    self._new_game_button = New_game_button(win, self._controller, self._model, "New Game", text_size, 280, 40, 260, 145 )
     # Timer
-    self._timer = Timer(win,self._model, "Timer 00:00", text_size, 160, 40, 555, 145)
+    self._timer = Timer(win, self._controller, self._model, "Timer 00:00", text_size, 160, 40, 555, 145)
     
 
     # Second Line Buttons
     # Draft Button
-    self._draft_button = Draft_button(win,self._model, "Draft: Off", text_size, 100, 50, 85, 205, self._manager )
+    self._draft_button = Draft_button(win, self._controller, self._model, "Draft: Off", text_size, 100, 50, 85, 205, self._manager )
     # Erase Button
-    self._erase_button = Erase_button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
+    self._erase_button = Erase_button(win, self._controller, self._model, "Erase", text_size, 100, 50, 190, 205)
     # Clear All Button
-    self._clear_all_button = Clear_all_button (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
+    self._clear_all_button = Clear_all_button (win, self._controller, self._model,"Clear All", text_size, 100, 50, 395, 205)
     # Hint Button
-    self._hint_button = Hint_button (win, self._model,f"Hint x {self._model.hint}", text_size, 100, 50, 500, 205)
+    self._hint_button = Hint_button (win, self._controller, self._model,f"Hint x {self._model.hint}", text_size, 100, 50, 500, 205)
     # Show Answer Button
-    self._end_game_button = End_game_button (win, self._model,"End Game", text_size, 110, 50, 605, 205)
+    self._end_game_button = End_game_button (win, self._controller, self._model,"End Game", text_size, 110, 50, 605, 205)
 
 
 

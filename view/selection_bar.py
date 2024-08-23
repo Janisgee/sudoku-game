@@ -4,14 +4,12 @@ import pygame_gui
 from .helper import *
 from .button import Button
 
-from control.controller import Controller
-
 
 class Selection_bar(Button):
-  def __init__ (self, screen,model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
-    super().__init__(screen, model, text, text_size, button_width, button_height, left_edge, top_edge)
+  def __init__ (self, screen, controller, model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
+    super().__init__(screen, controller, model, text, text_size, button_width, button_height, left_edge, top_edge)
     self._model = model
-    self._controller = Controller(model)
+    self._controller = controller
     self._manager = manager
     self._menu_data = ["Easy", "Medium", "Difficult", "Evil"]
     self._dropdown = pygame_gui.elements.UIDropDownMenu(self._menu_data, self._menu_data[0], pygame.Rect((self._left_edge, self._top_edge), (self._button_width, self._button_height)),  self._manager)

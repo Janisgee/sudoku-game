@@ -1,15 +1,14 @@
 
 import pygame
 from pygame.locals import *
-from control.controller import Controller
 from .button import Button
 from .helper import *
 
 class Draft_button(Button):
-  def __init__ (self, screen, model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
-    super().__init__(screen, model, text, text_size, button_width, button_height, left_edge, top_edge)
+  def __init__ (self, screen, controller, model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
+    super().__init__(screen, controller, model, text, text_size, button_width, button_height, left_edge, top_edge)
     self._model= model
-    self._controller = Controller(model)
+    self._controller = controller
     self._manager = manager
     self.boolean = False
 

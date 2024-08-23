@@ -37,7 +37,7 @@ class App:
     self._manager = pygame_gui.UIManager((self.width, self.height))
 
 
-    # Create Board
+    # Create Board       
     self._board = Board(self._controller, self._model, self._screen)
     # Create button container for buttons
     self._buttons_group = Buttons_group(self._screen, self._board, self._manager, self._controller, self._model)
