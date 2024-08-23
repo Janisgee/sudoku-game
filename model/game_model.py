@@ -9,7 +9,6 @@ class Game_model:
     self.level_list = {0:("Easy",32), 1:("Medium", 46), 2:("Difficult", 50), 3:("Evil", 54)}
     self.selected_level = 0
 
-
   def set_new_game(self):
     # Get cell number by automatic generation
     while True:

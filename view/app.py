@@ -46,7 +46,7 @@ class App:
     # Create Board
     self._board = Board(self._controller, self._model, self._screen)
     # Create button container for buttons
-    self._buttons_group = Buttons_group(self._screen, self._board, self._manager)
+    self._buttons_group = Buttons_group(self._screen, self._board, self._manager, self._model)
     self._buttons_group.create_all_buttons()
 
     # Run the App
