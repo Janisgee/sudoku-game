@@ -2,6 +2,8 @@ from .button import Button
 from .selection_bar import Selection_bar
 from .new_game_button import New_game_button
 from .draft_button import Draft_button
+from .erase_button import Erase_button
+from.clear_all import Clear_all
 from .timer import Timer
 
 class Game_control_buttons:
@@ -34,9 +36,9 @@ class Game_control_buttons:
     # Draft Button
     self._draft_button = Draft_button(win,self._model, "Draft: Off", text_size, 100, 50, 85, 205, self._manager )
     # Erase Button
-    self._erase_button = Button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
+    self._erase_button = Erase_button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
     # Clear All Button
-    self._clear_all_button = Button (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
+    self._clear_all_button = Clear_all (win, self._model,"Clear All", text_size, 100, 50, 395, 205)
     # Hint Button
     self._hint_button = Button (win, self._model,"Hint", text_size, 100, 50, 500, 205)
     # Show Answer Button

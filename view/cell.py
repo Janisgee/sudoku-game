@@ -55,7 +55,6 @@ class Cell():
 
   # Set selected cell from controller
   def cell_event(self, event):
-
     if event.type == pygame.MOUSEBUTTONDOWN:
       # Left click cell and # Right click cell
       if pygame.mouse.get_pressed()[0]:
@@ -86,3 +85,5 @@ class Cell():
     display_text_center_at_buttons(self._screen, game_player_num, (0, 0, 0), self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)
     # game num (purple)
     display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)
+
+    
