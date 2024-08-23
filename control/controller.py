@@ -12,14 +12,17 @@ class Controller:
     if game_cell == 0:
       self._game_model.set_selected_cell(selected_cell)
 
+  def click_cell_control_number(self, num):
+    cell= self._game_model.selected_cell 
+    if self._game_model.selected_cell != None:
+      self._game_model.player_game_list[cell[0]][cell[1]] = num
+      print(self._game_model.player_game_list[cell[0]][cell[1]])
+
   def set_difficulty(self, selected_level):
     self._game_model.selected_level = selected_level
 
   def toggle_switch (self, boolean):
-    if boolean:
-      self._game_model.edit_button = True
-    else:
-      self._game_model.edit_button = False
+    self._game_model.draft_button = boolean
 
   def add_game_time(self, time_delta):
     self._game_model.total_game_time += time_delta

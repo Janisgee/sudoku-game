@@ -1,7 +1,7 @@
 from .button import Button
 from .selection_bar import Selection_bar
 from .new_game_button import New_game_button
-from .edit_button import Edit_button
+from .draft_button import Draft_button
 from .timer import Timer
 
 class Game_control_buttons:
@@ -10,7 +10,7 @@ class Game_control_buttons:
     self._manager = manager
     self._model = model
     self._selection_bar = None
-    self._edit_button = None
+    self._draft_button = None
     self._erase_button = None
     self._clear_all_button = None
     self._hint_button = None
@@ -31,8 +31,8 @@ class Game_control_buttons:
     
 
     # Second Line Buttons
-    # Edit Button
-    self._edit_button = Edit_button(win,self._model, "Edit: Off", text_size, 100, 50, 85, 205, self._manager )
+    # Draft Button
+    self._draft_button = Draft_button(win,self._model, "Draft: Off", text_size, 100, 50, 85, 205, self._manager )
     # Erase Button
     self._erase_button = Button(win,self._model, "Erase", text_size, 100, 50, 190, 205)
     # Clear All Button
@@ -47,7 +47,7 @@ class Game_control_buttons:
   def draw_game_control_buttons(self):
     # Draw buttons lines
     self._selection_bar.draw_button()
-    self._edit_button.draw_button()
+    self._draft_button.draw_button()
     self._erase_button.draw_button()
     self._clear_all_button.draw_button()
     self._hint_button.draw_button()
@@ -60,7 +60,7 @@ class Game_control_buttons:
     # Hover Event for buttons
 
     self._selection_bar.button_event(event)
-    self._edit_button.button_event(event)
+    self._draft_button.button_event(event)
     self._erase_button.button_event(event)
     self._clear_all_button.button_event(event)
     self._hint_button.button_event(event)

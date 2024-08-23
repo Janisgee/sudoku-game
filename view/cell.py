@@ -17,7 +17,6 @@ class Cell():
     self._cell_text_size = 60
     self._cell_button = None
     self._cell_fill = (240, 240, 240) # grey
-    # self._cell_fill_pressed = (211, 238, 240)# red
     self._cell_num_color = (0, 0, 128)
     self.cell_row = row
     self.cell_col = col
@@ -46,7 +45,6 @@ class Cell():
         self._cell_fill = grey
       
     # Draw one cell
-    
     pygame.draw.rect(screen, self._cell_fill,[left, top, cell_width,cell_width])
     # Create cell react position
     self._cell_button =  pygame.Rect((left, top),(cell_width, cell_width))
@@ -55,16 +53,14 @@ class Cell():
     self.cell_number_display(top, left)
     
 
-
-
   # Set selected cell from controller
   def cell_event(self, event):
 
     if event.type == pygame.MOUSEBUTTONDOWN:
       # Left click cell and # Right click cell
-      if pygame.mouse.get_pressed()[0] or pygame.mouse.get_pressed()[2]:
+      if pygame.mouse.get_pressed()[0]:
         if check_mouse_collision(self._cell_button):
-        # If click is within button 
+          # If click is within button 
           self._controller.click_board_cell((self.cell_row,self.cell_col))
           print(f"{self.cell_row}{self.cell_col}")
 

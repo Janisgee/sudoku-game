@@ -5,7 +5,7 @@ from control.controller import Controller
 from .button import Button
 from .helper import *
 
-class Edit_button(Button):
+class Draft_button(Button):
   def __init__ (self, screen, model, text, text_size, button_width, button_height, left_edge, top_edge, manager):
     super().__init__(screen, model, text, text_size, button_width, button_height, left_edge, top_edge)
     self._model= model
@@ -21,14 +21,14 @@ class Edit_button(Button):
     if event.type == pygame.MOUSEBUTTONDOWN:
       if pygame.mouse.get_pressed()[0]:
         if check_mouse_collision(self._button):
-          print("Edit_button")
-          # self._controller.toggle_switch(self._model.edit_button)
+          print("Draft_button")
+          # self._controller.toggle_switch(self._model.draft_button)
           if self.boolean == False:
-            self._text = "Edit: On"
+            self._text = "Draft: On"
             self._controller.toggle_switch(True)
             self.boolean = True
           else:
-            self._text = "Edit: Off"
+            self._text = "Draft: Off"
             self._controller.toggle_switch(False)
             self.boolean = False
           
