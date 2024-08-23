@@ -45,6 +45,5 @@ class Cell_control_buttons:
     if event.type == pygame.MOUSEBUTTONDOWN:
       if pygame.mouse.get_pressed()[0]:
         if check_mouse_collision(self._cell_control_button):
-          if self._model.draft_button == False:
-            self._controller.click_cell_control_number(self._cell_control_num, )
+            self._controller.click_cell_control_number(self._cell_control_num)
     

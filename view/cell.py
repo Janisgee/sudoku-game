@@ -17,7 +17,7 @@ class Cell():
     self._cell_text_size = 60
     self._cell_button = None
     self._cell_fill = (240, 240, 240) # grey
-    self._cell_num_color = (0, 0, 128)
+    self._cell_num_color = (97, 97, 242)
     self.cell_row = row
     self.cell_col = col
     self.cell_left = None
@@ -67,13 +67,22 @@ class Cell():
 
 
   def cell_number_display(self, top, left): 
+    player_cell = self._model.player_game_list[self.cell_row][self.cell_col]
     cell = self._model.game_list[self.cell_row][self.cell_col]
     # Display " " when list number is 0
     game_num = ""
-    if cell == 0:
-      game_num = ' '
+    game_player_num =""
+    if cell == 0 and player_cell == 0:
+      game_player_num = ""
+      game_num = ""
+    elif cell == 0 and player_cell != 0:
+      game_player_num = f"{player_cell}"
     else:
-      game_num = f'{cell}'
+      game_num = f"{cell}"
+    
     
     # Create and display text on cell
+    # player num (black)
+    display_text_center_at_buttons(self._screen, game_player_num, (0, 0, 0), self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)
+    # game num (purple)
     display_text_center_at_buttons(self._screen, game_num, self._cell_num_color, self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)

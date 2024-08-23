@@ -13,10 +13,11 @@ class Controller:
       self._game_model.set_selected_cell(selected_cell)
 
   def click_cell_control_number(self, num):
-    cell= self._game_model.selected_cell 
-    if self._game_model.selected_cell != None:
-      self._game_model.player_game_list[cell[0]][cell[1]] = num
-      print(self._game_model.player_game_list[cell[0]][cell[1]])
+    if self._game_model.draft_button == False:
+      cell= self._game_model.selected_cell 
+      if self._game_model.selected_cell != None:
+        self._game_model.player_game_list[cell[0]][cell[1]] = num
+        print(self._game_model.player_game_list[cell[0]][cell[1]])
 
   def set_difficulty(self, selected_level):
     self._game_model.selected_level = selected_level
