@@ -13,8 +13,6 @@ class App:
     self._caption = None
     self.width = 800
     self.height = 1100
-    self._font1 = None
-    self._font2 = None
     self._board = None
     self._buttons_group = None
 
@@ -37,10 +35,6 @@ class App:
 
     # Setup for pygame gui packager
     self._manager = pygame_gui.UIManager((self.width, self.height))
-
-    # Set font type and size
-    self._font1 = pygame.font.SysFont("comicsans",40)
-    self._font2 = pygame.font.SysFont("comicsans",20)
 
 
     # Create Board
@@ -71,10 +65,22 @@ class App:
     # Fill the background with white
     self._screen.fill((255, 255, 255))
 
+    # Display Title "Sudoku"
+    font = pygame.font.SysFont("comicsans",60)
+    title = font.render("Sudoku", True, (0,0,0))
+      # Get the size of text
+    (title_width,title_height) = font.size("Sudoku")
+    title_left = 800 /2 - title_width / 2
+
+    self._screen.blit(title, (title_left, 40))
+    
+    # Display game board
     self._board.draw_board()
+
     # Display game buttons
     self._buttons_group.display_all_buttons()
 
+    # Display pygame gui stuff
     self._manager.draw_ui(self._screen)
 
     # self._controller.time_count()
