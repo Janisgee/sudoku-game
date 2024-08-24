@@ -2,8 +2,6 @@
 import pygame
 from pygame.locals import *
 pygame.font.init()
-
-from view.view import display_text_center_at_buttons
 from .helper import *
 
 class Cell():
@@ -83,9 +81,9 @@ class Cell():
       if player_cell == 0:
         display_color = (255, 187, 0) # Yello - Missing Number
       elif answer_cell == player_cell and cell == 0:
-        display_color = (0, 255, 0) # Green - Correct Num
+        display_color = (0, 255, 0) # Green - Correct Number
       elif answer_cell != player_cell:
-        display_color = (255, 0, 0) # Red - Wrong Num
+        display_color = (255, 0, 0) # Red - Wrong Number
 
     elif cell == 0:
       display_color = (0, 0, 0) # Black

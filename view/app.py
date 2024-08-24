@@ -4,6 +4,7 @@ import pygame_gui
 from .board import Board
 from .buttons_group import Buttons_group
 from .keyboard import Keyboard
+from .helper import*
 
 class App:
   def __init__(self, controller, model):
@@ -80,6 +81,16 @@ class App:
     title_left = 800 /2 - title_width / 2
 
     self._screen.blit(title, (title_left, 40))
+
+    # Display Legend
+    if self._model.end_game:
+      green = (0, 255, 0) # Correct Number
+      yellow = (255, 187, 0) # Missing Number
+      red = (255, 0, 0) # Wrong Number
+      
+      display_text_center_at_buttons(self._screen, "Green = Correct Number", green, 30, 160, 40, 1040, 85)
+      display_text_center_at_buttons(self._screen, "Yello = Missing Number", yellow, 30, 160, 40, 1040, 335)
+      display_text_center_at_buttons(self._screen, "Red = Wrong Number", red, 30, 160, 40, 1040, 570)
     
     # Display game board
     self._board.draw_board()

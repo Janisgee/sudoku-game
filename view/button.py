@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-from view.view import display_text_center_at_buttons
 from .helper import *
 
 class Button:
