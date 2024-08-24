@@ -57,6 +57,7 @@ class Controller:
     if self._game_model.end_game:
       return
     self._game_model.player_game_list = copy.deepcopy( self._game_model.game_list)
+    self._game_model.selected_cell = None
 
   def show_hint (self):
     if self._game_model.end_game:
@@ -78,5 +79,9 @@ class Controller:
 
   def new_game(self):
     self._game_model.set_new_game()
+
+
+  def number_keypress(self, num):
+    self.click_cell_control_number(num)
 
 

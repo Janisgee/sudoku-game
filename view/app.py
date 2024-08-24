@@ -3,6 +3,7 @@ from pygame.locals import *
 import pygame_gui
 from .board import Board
 from .buttons_group import Buttons_group
+from .keyboard import Keyboard
 
 class App:
   def __init__(self, controller, model):
@@ -15,6 +16,7 @@ class App:
     self.height = 1100
     self._board = None
     self._buttons_group = None
+    self._keyboard = None
 
     # Items for pygame_gui
     self._manager = None
@@ -36,6 +38,8 @@ class App:
     # Setup for pygame gui packager
     self._manager = pygame_gui.UIManager((self.width, self.height))
 
+    # Create Keyboard Listener
+    self._keyboard = Keyboard(self._controller)
 
     # Create Board       
     self._board = Board(self._controller, self._model, self._screen)
@@ -59,6 +63,9 @@ class App:
 
     # Game buttons control event
     self._buttons_group.event_from_buttons(event)
+
+    # Keyboard control event
+    self._keyboard.keyboard_event(event)
   
   def on_render(self):
 

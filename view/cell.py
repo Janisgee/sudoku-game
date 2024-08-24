@@ -81,11 +81,11 @@ class Cell():
     if self._model.end_game:
       display_num = answer_cell 
       if player_cell == 0:
-        display_color = (255, 187, 0) # Yello
+        display_color = (255, 187, 0) # Yello - Missing Number
       elif answer_cell == player_cell and cell == 0:
-        display_color = (0, 0, 0) # Black
+        display_color = (0, 255, 0) # Green - Correct Num
       elif answer_cell != player_cell:
-        display_color = (255, 0, 0) # Red
+        display_color = (255, 0, 0) # Red - Wrong Num
 
     elif cell == 0:
       display_color = (0, 0, 0) # Black
