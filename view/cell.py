@@ -57,7 +57,7 @@ class Cell():
         if check_mouse_collision(self._cell_button):
           # If click is within button 
           self._controller.click_board_cell((self.cell_row,self.cell_col))
-          print(f"{self.cell_row}{self.cell_col}")
+         
 
 
   def cell_number_display(self, top, left): 

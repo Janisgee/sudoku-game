@@ -17,7 +17,7 @@ class Draft_button(Button):
     if event.type == pygame.MOUSEBUTTONDOWN:
       if pygame.mouse.get_pressed()[0]:
         if check_mouse_collision(self._button):
-          print("Draft_button")
+          
           if self.boolean == False:
             self._text = "Draft: On"
             self.boolean = True

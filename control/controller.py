@@ -22,7 +22,7 @@ class Controller:
       # Draft Off
       if self._game_model.draft_button == False:
         self._game_model.player_game_list[cell[0]][cell[1]] = num
-        print( self._game_model.player_game_list[cell[0]][cell[1]])
+
       # Draft On
       else:
         draft_list = self._game_model.all_cell_draft_list[cell[0]][cell[1]]
