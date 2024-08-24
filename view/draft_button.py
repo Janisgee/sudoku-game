@@ -18,16 +18,17 @@ class Draft_button(Button):
       if pygame.mouse.get_pressed()[0]:
         if check_mouse_collision(self._button):
           print("Draft_button")
-          # self._controller.toggle_switch(self._model.draft_button)
           if self.boolean == False:
             self._text = "Draft: On"
-            self._controller.toggle_switch(True)
             self.boolean = True
+            self._controller.toggle_switch(self.boolean)
+
           else:
             self._text = "Draft: Off"
-            self._controller.toggle_switch(False)
             self.boolean = False
-          
+            self._controller.toggle_switch(self.boolean)
+
+
 
             
         

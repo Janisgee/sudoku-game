@@ -10,6 +10,7 @@ class Board():
     self._board_size = 630
     self._left_edge = 85
     self._top_edge = 385
+    
 
     # Store each cell position
     self._cells = []
@@ -59,7 +60,8 @@ class Board():
     # Draw Cells
     for row in range (0,9):
       for col in range (0,9):
-        self._cells[row][col].create_cell(top, left)
+        # Display cell on board according position
+        self._cells[row][col].create_cell(top,left)
         left += cell_size
       top += cell_size
       left = original_left

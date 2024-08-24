@@ -6,8 +6,6 @@ pygame.font.init()
 from view.view import display_text_center_at_buttons
 from .helper import *
 
-
-
 class Cell():
   def __init__(self, controller, model, screen, board_size, row, col):
     self._controller = controller
@@ -64,11 +62,15 @@ class Cell():
           print(f"{self.cell_row}{self.cell_col}")
 
 
-
   def cell_number_display(self, top, left): 
     player_cell = self._model.player_game_list[self.cell_row][self.cell_col]
     cell = self._model.game_list[self.cell_row][self.cell_col]
     answer_cell = self._model.answer_list[self.cell_row][self.cell_col]
+
+    # Choose display draft number
+    if player_cell == 0 and self._model.end_game == False:
+      self.draw_draft_number(top, left)
+      return
 
     # Find display text and color
     display_num = player_cell
@@ -94,5 +96,47 @@ class Cell():
     # Create and display text on cell
     display_text_center_at_buttons(self._screen, display_text, display_color, self._cell_text_size, self._cell_size,  self._cell_size, top,  left, None, 5)
 
+  
+  def draw_draft_number(self, original_top, original_left):
+
+    one_third = self._cell_size /3
+    second_top = original_top + one_third
+    third_top = original_top + one_third * 2
+    second_left = original_left + one_third
+    third_left = original_left + one_third * 2
+
+    for i in self._model.all_cell_draft_list[self.cell_row][self.cell_col]:
+      # Display Draft text:
+      draft_num = i
+      left = original_left
+      top = original_top
+
+      if draft_num == 2:
+        left = second_left
+      if draft_num == 3:
+        left = third_left
+      if draft_num == 4:
+        top = second_top
+      if draft_num == 5:
+        top = second_top
+        left = second_left
+      if draft_num == 6:
+        top = second_top
+        left = third_left
+      if draft_num == 7:
+        top = third_top
+      if draft_num == 8:
+        top = third_top
+        left = second_left
+      if draft_num == 9:
+        top = third_top
+        left = third_left
+
+      display_color = (163, 163, 162) # grey
+      display_text = f"{draft_num}"
+    
+
+      # Create and display draft on cell
+      display_text_center_at_buttons(self._screen, display_text, display_color, 25, self._cell_size / 3,  self._cell_size / 3, top,  left, None, 3)
 
   

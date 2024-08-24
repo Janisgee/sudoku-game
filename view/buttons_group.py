@@ -30,3 +30,4 @@ class Buttons_group:
       self.cell_buttons_control_container.side_number_buttons[i].cell_control_button_event(event)
     
     self.game_control_buttons.game_control_buttons_event(event)
+
