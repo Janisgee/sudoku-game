@@ -10,3 +10,32 @@ https://github.com/user-attachments/assets/73c2f6c0-513d-476e-b935-7fddb3627114
 Developed a Sudoku game using Python and Pygame, implementing the Model-View-Controller (MVC) architecture to separate game logic, UI, and user interactions.
 The game programmatically generates Sudoku puzzles with varied difficulty levels.
 Users can input numbers, and the game provides real-time validation and feedback on their entries.
+
+## Features
+
+- Interactive Sudoku board
+
+- User-friendly interface built with Pygame and pygame_gui
+
+- Ability to input numbers and validate moves
+
+- Highlighting of selected cells
+
+- Basic error handling
+
+## Prerequisites
+
+Before running the project, ensure you have the following installed:
+
+- Python (version 3.8 or later recommended)
+
+- Pygame
+
+- pygame_gui
+
+## Running the Game
+
+To start the game, simply run:
+```
+python main.py
+```
